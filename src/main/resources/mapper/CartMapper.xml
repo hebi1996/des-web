@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.xmh.mapper.CartMapper">
+ 	<resultMap type="com.xmh.entity.Cart" id="BaseResultMap">
+			<!-- column:数据库字段		property:实体类实行字段 -->
+			<id column="cartId" property="cartId"/>
+			<result column="userId" property="userId"/> 
+			<result column="mealId" property="mealId"/> 
+			<result column="count" property="count"/>
+			<association property="foodInfo" javaType="com.xmh.entity.FoodInfo">
+				<id column="mealId" property="mealId"/>
+				<result column="mealName" property="mealName"/> 
+				<result column="mealPrice" property="mealPrice"/> 
+				<result column="mealSeriesId" property="mealSeriesId"/> 
+				<association property="cuisine" javaType="com.xmh.entity.Cuisine">
+					<id column="seriesId" property="seriesId"/>
+					<result column="seriesName" property="seriesName"/> 
+			
+				</association>
+			</association>
+		</resultMap>
+ 	<!-- 查询我的购物车信息 -->
+ 	<select id="getAllCartsByUser"  resultMap="BaseResultMap">
+ 		select ct.*,a.* from 
+ 		(select fo.*,cu.* from foodinfo fo inner join cuisine cu on fo.mealSeriesId=cu.seriesId) a 
+ 		inner join cart ct on ct.mealId = a.mealId where ct.userId = #{userId}
+ 	</select>
+ 	<!-- 删除某张订单 -->
+ 	<delete id="deleteCartByCartId">
+ 		delete from cart where cartId = #{cartId}
+ 	</delete>
+ 	<!-- 清空购物车 -->
+ 	<delete id="clearMyCart">
+ 		delete from cart where userId = #{userId}
+ 	</delete>
+ 	
+ </mapper>
+ 	
+ 

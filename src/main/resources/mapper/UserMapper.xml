@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.xmh.mapper.UserMapper">
+ 	
+ 	
+ 	<!-- 注册用户 -->
+ 	<insert id="addUser" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+ 		insert into userinfo(loginName,loginPwd,trueName,email,phone,address) 
+ 			values(#{loginName},#{loginPwd},#{trueName},#{email},#{phone},#{address})
+ 	</insert>
+ 	<!-- 用户登录判断 -->
+ 	<select id="selectUserByUNAndPWD" resultType="com.xmh.entity.User">
+ 		select * from userinfo where loginName = #{username} and loginPwd = #{password}
+ 	</select>
+ 	<!-- 管理员登录判断 -->
+ 	<select id="selectAdminByUNAndPWD" resultType="com.xmh.entity.Admin">
+ 		select * from admininfo where loginName = #{username} and loginPwd = #{password}
+ 	</select>
+ 	<!-- 查询所有用户 -->
+ 	<select id="selectAllUser" resultType="com.xmh.entity.User">
+ 		select * from userinfo
+ 	</select>
+ 	<!-- 管理员修改用户信息 -->
+ 
+ 	<update id="updateUserInfo">
+ 		update userinfo set loginPwd=#{loginPwd},trueName=#{trueName},email=#{email},phone=#{phone},address=#{address} 
+ 		where id = #{id}
+ 	</update>
+ 	<!-- 管理员新增用户 -->
+ 	<insert id="adminAddUser">
+ 		insert into userinfo(loginName,loginPwd,trueName,email,phone,address) 
+ 			values(#{loginName},#{loginPwd},#{trueName},#{email},#{phone},#{address})
+ 	</insert>
+ 	<!-- 管理员删除用户 -->
+ 	<delete id="deleteUser">
+ 		delete from userinfo where id=#{id}
+ 	</delete>
+ 	<!-- 添加管理员 -->
+ 	<insert id="adminAddAdmin">
+ 		insert into admininfo(loginName,loginPwd) values(#{loginName},#{loginPwd})
+ 	</insert>
+ 	<!-- 删除管理员 -->
+ 	<delete id="admindeleteAdmin">
+ 		delete from admininfo where id = #{id}
+ 	</delete>
+ 	<!-- 显示所有管理员 -->
+ 	<select id="selectAddAdmin" resultType="com.xmh.entity.Admin">
+ 		select * from admininfo
+ 	</select>
+ 	<!-- 用户显示自己信息 -->
+ 	<select id="userInfoByUserId" resultType="com.xmh.entity.User">
+ 		select * from userinfo where id = #{userId}
+ 	</select>
+ 	<!-- 用户修改个人信息 -->
+ 	<update id="editUserInfo">
+ 		update userinfo set email = #{email},phone = #{phone},address = #{address} where id = #{id}
+ 	</update>
+ 	<!-- 管理员修改密码时查询原密码是否正确 -->
+ 	<select id="selectAdminByUserIdAndOldPwd" resultType="com.xmh.entity.Admin">
+ 		select * from admininfo where id = #{id} and loginPwd = #{oldPwd}
+ 	</select>
+ 	<!-- 管理员修改密码 -->
+ 	<update id="changeAdminPwd">
+ 		update admininfo set loginPwd = #{newPwd} where id=#{id}
+ 	</update>
+ 	<!-- 用户修改原密码时查询云密码是否正确 -->
+ 	<select id="selectUserByUserIdAndOldPwd" resultType="com.xmh.entity.User">
+ 		select * from userinfo where id = #{id} and loginPwd = #{oldPwd}
+ 	</select>
+ 	<!-- 用户修改密码 -->
+ 	<update id="changeUserPwd">
+ 		update userinfo set loginPwd = #{newPwd} where id=#{id}
+ 	</update>
+ 	<!-- 用户分页查询 -->
+ 	<select id="selectAllUserByPage" resultType="com.xmh.entity.User">
+ 		select * from userinfo limit #{page},#{size}
+ 	</select>
+ </mapper>

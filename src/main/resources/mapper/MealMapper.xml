@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.xmh.mapper.MealMapper">
+ 	<resultMap type="com.xmh.entity.FoodInfo" id="BaseResultMap">
+			<!-- column:数据库字段		property:实体类实行字段 -->
+			<id column="mealId" property="mealId"/>
+			<result column="mealSeriesId" property="mealSeriesId"/> 
+			<result column="mealName" property="mealName"/> 
+			<result column="mealSummarize" property="mealSummarize"/>
+			<result column="mealDescription" property="mealDescription"/> 
+			<result column="mealPrice" property="mealPrice"/> 
+			<result column="mealImage" property="mealImage"/> 
+			<association property="cuisine" javaType="com.xmh.entity.Cuisine">
+				<id column="seriesId" property="seriesId"/>
+				<result column="seriesName" property="seriesName"/> 
+			
+			</association>
+		</resultMap>
+
+ 	
+ 	<!-- 添加菜品 -->
+ 	<insert id="insertMeal" keyColumn="mealId" keyProperty="mealId" useGeneratedKeys="true">
+ 		insert into foodinfo(mealSeriesId,mealName,mealSummarize,mealDescription,mealPrice) 
+ 		values(#{mealSeriesId},#{mealName},#{mealSummarize},#{mealDescription},#{mealPrice})
+ 	</insert>
+ 	<!-- 查询所有菜品 -->
+ 	<select id="selectAllMeal"  resultMap="BaseResultMap">
+ 		select f.*,c.* from foodinfo f inner join cuisine c on f.mealSeriesId=c.seriesId
+ 	</select>
+ 	<!-- 修改菜品 -->
+ 	<update id="updateMeal">
+ 		update foodinfo set mealName=#{mealName}, mealSummarize=#{mealSummarize}, 
+ 		mealDescription=#{mealDescription}, mealPrice=#{mealPrice}, mealSeriesId=#{mealSeriesId} 
+ 		where mealId=#{mealId}
+ 	</update>
+ 	<!-- 删除菜品 -->
+ 	<delete id="deleteMeal">
+ 		delete from foodinfo where mealId=#{mealId}
+ 	</delete>
+ 	<!-- 菜品分页 -->
+ 	<select id="selectAllMealByPage" resultType="com.xmh.entity.FoodInfo">
+ 		select * from foodinfo limit #{page},#{size}
+ 	</select>
+ 	<!-- 上传菜品图片 -->
+ 	<update id="submitImg">
+ 		update foodinfo set mealImage = #{file} where mealId = #{mealId}
+ 	</update>
+ 	<!-- 管理员根据菜名、菜系查询菜品 -->
+ 	<select id="searchByMealName"  resultMap="BaseResultMap">
+ 		select f.*,c.* from foodinfo f inner join cuisine c on f.mealSeriesId=c.seriesId where 1=1
+ 		<if test="mealName !=null  &amp;&amp; mealName !=''">
+			and mealName like "%"#{mealName}"%"
+		</if>
+		<if test="mealSeries !=null &amp;&amp; mealSeries !=''">
+			and mealSeriesId = #{mealSeries}
+		</if>
+ 	</select>
+ </mapper>
+ 	
+ 

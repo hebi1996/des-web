@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.xmh.mapper.MealSeriesMapper">
+ 	
+ 	<!-- 添加菜系 -->
+ 	<insert id="insertMealSeries" keyColumn="seriesId" keyProperty="seriesId" useGeneratedKeys="true">
+ 		insert into cuisine(seriesName) values(#{seriesName})
+ 	</insert>
+ 	<!-- 显示所有菜系 -->
+ 	<select id="selectAllSeries" resultType="com.xmh.entity.Cuisine">
+ 		select * from cuisine
+ 	</select>
+ 	<!-- 修改菜系名称 -->
+ 	<update id="updateMealSeriesName">
+ 		update cuisine set seriesName=#{seriesName} where seriesId=#{seriesId}
+ 	</update>
+ 	<!-- 删除菜系 -->
+ 	<delete id="deleteMealSeries">
+ 		delete from cuisine where seriesId = #{seriesId}
+ 	</delete>
+ 	<!-- 菜系分页 -->
+ 	<select id="selectAllSeriesByPage" resultType="com.xmh.entity.Cuisine">
+ 		select * from cuisine limit #{page},#{size}
+ 	</select>
+ </mapper>
+ 	
+ 
