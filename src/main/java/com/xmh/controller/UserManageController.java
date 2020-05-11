@@ -7,6 +7,7 @@ import com.xmh.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,8 @@ public class UserManageController {
 	
 	@Autowired
 	private UserService userService;
+	
+	
 	@RequestMapping("/usersManage")
 	public ModelAndView usersManage(@Param("page")Integer page) {
 		ModelAndView mav = new ModelAndView();
@@ -30,6 +33,7 @@ public class UserManageController {
 		
 		return mav;
 	}
+	
 	@RequestMapping("/editUserInfo")
 	@ResponseBody
 	public Map<String, String> editUserInfo(@RequestParam("id")Integer id,@RequestParam("loginName")String loginName,@RequestParam("loginPwd")String loginPwd,@RequestParam("trueName")String trueName,@RequestParam("email")String email,@RequestParam("phone")String phone,@RequestParam("address")String address){
@@ -42,6 +46,7 @@ public class UserManageController {
 		user.setEmail(email);
 		user.setPhone(phone);
 		user.setAddress(address);
+		user.setIntegral(StringUtils.isEmpty(user.getIntegral()) ? 100 : user.getIntegral());
 		boolean flag=userService.updateUserInfo(user);
 		if (flag) {
 			map.put("result", "success");
@@ -51,7 +56,8 @@ public class UserManageController {
 	}
 	@RequestMapping("/adminAddUser")
 	@ResponseBody
-	public Map<String, String> adminAddUser(@RequestParam("loginName")String loginName,@RequestParam("loginPwd")String loginPwd,@RequestParam("trueName")String trueName,@RequestParam("email")String email,@RequestParam("phone")String phone,@RequestParam("address")String address){
+	public Map<String, String> adminAddUser(
+			@RequestParam("loginName")String loginName,@RequestParam("loginPwd")String loginPwd,@RequestParam("trueName")String trueName,@RequestParam("email")String email,@RequestParam("phone")String phone,@RequestParam("address")String address){
 		Map<String,String> map = new HashMap<String, String>();
 		User user = new User();
 		user.setLoginName(loginName);
@@ -60,13 +66,12 @@ public class UserManageController {
 		user.setEmail(email);
 		user.setPhone(phone);
 		user.setAddress(address);
+		user.setIntegral(100);
 		boolean flag = userService.adminAddUser(user);
 		if (flag) {
 			map.put("result", "success");
 			return map;
 		}
-			
-		
 		return null;
 	}
 	@RequestMapping("/deleteUser")

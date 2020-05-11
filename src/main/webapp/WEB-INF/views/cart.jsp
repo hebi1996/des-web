@@ -38,7 +38,6 @@
 										<table id="example2" class="table table-bordered table-hover dataTable" role="grid">
 											<thead>
 												<tr role="row">
-	
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">序号</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">菜系</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">菜名</th>
@@ -63,7 +62,6 @@
 											</tbody>
 											<tfoot>
 											</tfoot>
-											
 										</table>
 									</div>
 								</div>
@@ -72,9 +70,6 @@
 									<div class="col-sm-12 col-md-9 col-md-offset-3">
 										<div class="dataTables_paginate paging_simple_numbers">
 											<ul class="pagination" id="PAGE_ID">
-												
-												
-													
 											</ul>
 										</div>
 									</div>

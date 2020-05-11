@@ -23,7 +23,6 @@ public class AdminManageController {
 	@RequestMapping("/adminManage")
 	public ModelAndView adminManage() {
 		ModelAndView mav = new ModelAndView();
-		
 		List<Admin> admins = userSerive.selectAddAdmin();
 		mav.addObject("admins",admins);
 		mav.setViewName("adminManage");
@@ -44,6 +43,7 @@ public class AdminManageController {
 		}
 		return null;
 	}
+	
 	@RequestMapping("/admindeleteAdmin")
 	@ResponseBody
 	public Map<String, String> admindeleteAdmin(@RequestParam("id")Integer id){
