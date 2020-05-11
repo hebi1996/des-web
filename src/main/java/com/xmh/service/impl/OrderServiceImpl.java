@@ -2,7 +2,9 @@ package com.xmh.service.impl;
 
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import com.xmh.entity.MainOrder;
@@ -64,8 +66,9 @@ public class OrderServiceImpl implements OrderService{
 	UserMapper userMapper;
 	
 	@Override
-	public boolean orders_cancel(Integer oid, Integer orderState) {
+	public Map<String,String> orders_cancel(Integer oid, Integer orderState) {
 		// TODO Auto-generated method stub
+		Map<String,String> resultMap = new HashMap<>();
 		MainOrder mainOrder = orderMapper.getMainOrderByOid(oid);
 		// 如果此单已经接单且超过 10分钟取消扣除用户10分
 		Timestamp orderTime = mainOrder.getOrderTime();
@@ -77,11 +80,24 @@ public class OrderServiceImpl implements OrderService{
 		{
 			User user = userMapper.userInfoByUserId(mainOrder.getUserId());
 			Integer integral = user.getIntegral();
+			if(integral < 30) {
+				resultMap.put("result", "success");
+				resultMap.put("message", "用户积分不足30分，不能进行此处取单行为!!!");
+				return resultMap;
+			}
 			user.setIntegral(integral-10);
 			userMapper.updateUserInfo(user);
 			System.out.println("将用户的积分减掉10分");
 		}
-		return orderMapper.orders_handle(oid,orderState);
+		boolean flag = orderMapper.orders_handle(oid,orderState);
+		if(flag) {
+			resultMap.put("result", "success");
+			resultMap.put("message", "取单成功");
+		} else {
+			resultMap.put("result", "fail");
+			resultMap.put("message", "取单失败");
+		}
+		return resultMap;
 	}
 
 	@Override

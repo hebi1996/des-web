@@ -115,14 +115,7 @@ public class UserOrderController {
 	@RequestMapping("/orders_cancel")
 	@ResponseBody
 	public Map<String, String> orders_cancel(@RequestParam("oid")Integer oid,@RequestParam("orderState")Integer orderState){
-		Map< String, String> map = new HashMap<String, String>();
-		boolean flag = orderService.orders_cancel(oid,orderState);
-		if (flag) {
-			map.put("result", "success");
-			return map;
-		}
-		
-		return null;
+		return orderService.orders_cancel(oid,orderState);
 	}
 	
 }

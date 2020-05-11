@@ -80,7 +80,7 @@ function orders_cancel(oid,orderState){
 		},
 		async:true,
 		success:function(data){
-			alert("申请已提交，请等待店家回复！")
+			alert(data.message)
 			returnordersList();
 		},
 		error:function(data){	
