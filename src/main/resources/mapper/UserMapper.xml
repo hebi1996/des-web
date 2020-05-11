@@ -28,13 +28,19 @@
  	<!-- 管理员修改用户信息 -->
  
  	<update id="updateUserInfo">
- 		update userinfo set loginPwd=#{loginPwd},trueName=#{trueName},email=#{email},phone=#{phone},address=#{address} 
+ 		update userinfo 
+ 		set loginPwd=#{loginPwd},
+ 			trueName=#{trueName},
+ 			email=#{email},
+ 			phone=#{phone},
+ 			address=#{address},
+ 			integral = #{integral} 
  		where id = #{id}
  	</update>
  	<!-- 管理员新增用户 -->
  	<insert id="adminAddUser">
- 		insert into userinfo(loginName,loginPwd,trueName,email,phone,address) 
- 			values(#{loginName},#{loginPwd},#{trueName},#{email},#{phone},#{address})
+ 		insert into userinfo(loginName,loginPwd,trueName,email,phone,address, integral) 
+ 			values(#{loginName},#{loginPwd},#{trueName},#{email},#{phone},#{address}, #{integral})
  	</insert>
  	<!-- 管理员删除用户 -->
  	<delete id="deleteUser">
