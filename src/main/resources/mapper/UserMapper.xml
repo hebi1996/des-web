@@ -10,8 +10,8 @@
  	</select>
  	<!-- 注册用户 -->
  	<insert id="addUser" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
- 		insert into userinfo(loginName,loginPwd,trueName,email,phone,address) 
- 			values(#{loginName},#{loginPwd},#{trueName},#{email},#{phone},#{address})
+ 		insert into userinfo(loginName,loginPwd,trueName,email,phone,address,integral) 
+ 			values(#{loginName},#{loginPwd},#{trueName},#{email},#{phone},#{address},#{integral})
  	</insert>
  	<!-- 用户登录判断 -->
  	<select id="selectUserByUNAndPWD" resultType="com.xmh.entity.User">
