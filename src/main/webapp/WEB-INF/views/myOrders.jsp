@@ -50,6 +50,7 @@
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单时间</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单状态</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">总额</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">支付方式</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">详细</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">处理</th>
 												</tr>
@@ -79,6 +80,7 @@
 														</c:if>
 														
 														<td valign="center" align="center" width="30"><f:formatNumber value="${o.orderPrice }" type="currency" pattern="￥.0"/></td>
+														<td valign="center" align="center" width="30">${o.payType }</td>
 														<td valign="center" align="center" width="30">
 															<a href="" onclick="orders_info('${o.oid}'); return false;">详细信息</a>
 														</td>

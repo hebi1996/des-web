@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import com.xmh.entity.MainOrder;
 import com.xmh.entity.SonOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,24 +28,19 @@ public class UserOrderController {
 
 	@Autowired
 	private OrderService orderService;
+	
 	@Autowired
 	private CartService cartService;
+	
 	@RequestMapping("/createMyOrders")
 	@ResponseBody
-	public Map<String, String> addOrders(HttpServletRequest request){
+	public Map<String, String> addOrders(HttpServletRequest request, String payType){
 		Map< String, String> map = new HashMap<String, String>();
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
-		//����û����ﳵ��Ϣ
 		List<Cart> carts = cartService.getAllCartsByUser(userId);
-
-		//���ϵͳ��ǰʱ��
 		long timeString = System.currentTimeMillis();
 		Timestamp time = new Timestamp(timeString);
-
-		//�ܼ�
 		double orderPrice = 0;
-		//�Ӷ���
-		
 		SonOrder sonOrder = null;
 		List<SonOrder> sonOrders = new ArrayList<SonOrder>();
 		for (Cart c : carts) {
@@ -55,16 +52,17 @@ public class UserOrderController {
 			sonOrder.setMealId(c.getMealId());
 			sonOrder.setMealPrice(c.getFoodInfo().getMealPrice());
 			sonOrder.setMealCount(c.getCount());
+			sonOrder.setPayType(payType);
 			sonOrders.add(sonOrder);
 		}
 		
 		System.out.println(orderPrice);
 		MainOrder mainOrder = new MainOrder();
 		mainOrder.setUserId(userId);
+		mainOrder.setPayType(payType);
 		mainOrder.setOrderPrice(orderPrice);
 		mainOrder.setOrderTime(time);
 		mainOrder.setSonOrders(sonOrders);
-		
 		
 		boolean flag = orderService.createMyOrders(mainOrder);
 		
@@ -79,6 +77,10 @@ public class UserOrderController {
 	public ModelAndView getAllOrdersByUserId(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		if(Objects.equals(null, userId)) {
+			mav.setViewName("adminlogin");
+			return mav;
+		}
 		List<MainOrder> mainOrders= orderService.getAllOrdersByUserId(userId);
 		mav.addObject("orders", mainOrders);
 		mav.setViewName("myOrders");

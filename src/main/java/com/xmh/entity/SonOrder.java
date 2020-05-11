@@ -4,15 +4,17 @@ public class SonOrder {
 	private Integer odId;
 	private Integer oId;
 	private Integer mealId;
+	private String payType;
 	private double mealPrice;
 	private double mealCount;
 	private FoodInfo foodInfo;
 	
-	public SonOrder(Integer odId, Integer oId, Integer mealId, double mealPrice, double mealCount, FoodInfo foodInfo) {
+	public SonOrder(Integer odId, Integer oId, Integer mealId, String payType, double mealPrice, double mealCount, FoodInfo foodInfo) {
 		super();
 		this.odId = odId;
 		this.oId = oId;
 		this.mealId = mealId;
+		this.payType = payType;
 		this.mealPrice = mealPrice;
 		this.mealCount = mealCount;
 		this.foodInfo = foodInfo;
@@ -57,6 +59,13 @@ public class SonOrder {
 	}
 	public void setMealCount(double mealCount) {
 		this.mealCount = mealCount;
+	}
+	
+	public String getPayType() {
+		return payType;
+	}
+	public void setPayType(String payType) {
+		this.payType = payType;
 	}
 	@Override
 	public String toString() {

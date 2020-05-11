@@ -1,7 +1,9 @@
 package com.xmh.service.impl;
 
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 import com.xmh.entity.MainOrder;
 import com.xmh.entity.SonOrder;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xmh.mapper.OrderMapper;
+import com.xmh.mapper.UserMapper;
 import com.xmh.service.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -57,10 +60,27 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		return orderMapper.orders_handle(oid,orderState);
 	}
-
+	@Autowired
+	UserMapper userMapper;
+	
 	@Override
 	public boolean orders_cancel(Integer oid, Integer orderState) {
 		// TODO Auto-generated method stub
+		MainOrder mainOrder = orderMapper.getMainOrderByOid(oid);
+		// 如果此单已经接单且超过 10分钟取消扣除用户10分
+		Timestamp orderTime = mainOrder.getOrderTime();
+		long now = System.currentTimeMillis();
+		long old = orderTime.getTime();
+		System.out.println(now - old);
+		System.out.println((now - old) < 2000);
+		if(Objects.equals(1, mainOrder.getOrderState()))
+		{
+			User user = userMapper.userInfoByUserId(mainOrder.getUserId());
+			Integer integral = user.getIntegral();
+			user.setIntegral(integral-10);
+			userMapper.updateUserInfo(user);
+			System.out.println("将用户的积分减掉10分");
+		}
 		return orderMapper.orders_handle(oid,orderState);
 	}
 

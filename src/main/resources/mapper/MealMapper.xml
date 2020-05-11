@@ -11,23 +11,27 @@
 			<result column="mealSummarize" property="mealSummarize"/>
 			<result column="mealDescription" property="mealDescription"/> 
 			<result column="mealPrice" property="mealPrice"/> 
+			<result column="foodCreateTime" property="foodCreateTime"/> 
 			<result column="mealImage" property="mealImage"/> 
 			<association property="cuisine" javaType="com.xmh.entity.Cuisine">
 				<id column="seriesId" property="seriesId"/>
 				<result column="seriesName" property="seriesName"/> 
-			
+				<result column="adminId" property="adminId"/> 
+				<result column="cuisineCreateTime" property="cuisineCreateTime"/> 
 			</association>
 		</resultMap>
 
  	
  	<!-- 添加菜品 -->
  	<insert id="insertMeal" keyColumn="mealId" keyProperty="mealId" useGeneratedKeys="true">
- 		insert into foodinfo(mealSeriesId,mealName,mealSummarize,mealDescription,mealPrice) 
- 		values(#{mealSeriesId},#{mealName},#{mealSummarize},#{mealDescription},#{mealPrice})
+ 		insert into foodinfo(mealSeriesId,mealName,mealSummarize,mealDescription,mealPrice, foodCreateTime) 
+ 		values(#{mealSeriesId},#{mealName},#{mealSummarize},#{mealDescription},#{mealPrice}, #{foodCreateTime})
  	</insert>
  	<!-- 查询所有菜品 -->
  	<select id="selectAllMeal"  resultMap="BaseResultMap">
- 		select f.*,c.* from foodinfo f inner join cuisine c on f.mealSeriesId=c.seriesId
+ 		select f.*,c.* from foodinfo f inner join cuisine c on f.mealSeriesId=c.seriesId 
+ 		WHERE 0 = 0 
+ 		<if test="adminId != null"> AND c.adminId = #{adminId}</if>
  	</select>
  	<!-- 修改菜品 -->
  	<update id="updateMeal">

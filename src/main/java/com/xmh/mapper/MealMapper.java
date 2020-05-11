@@ -7,7 +7,12 @@ import java.util.List;
 
 public interface MealMapper {
 	boolean insertMeal(FoodInfo foods);
-	List<FoodInfo> selectAllMeal();
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	List<FoodInfo> selectAllMeal(@Param("adminId") Integer adminId);
 	boolean updateMeal(FoodInfo foodInfo);
 	boolean deleteMeal(@Param("mealId") Integer mealId);
 	List<FoodInfo> selectAllMealByPage(@Param("page") Integer page, @Param("size") Integer size);

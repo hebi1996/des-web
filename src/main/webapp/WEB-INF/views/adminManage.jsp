@@ -55,7 +55,7 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header" style="width:100%">
-							<h3 class="card-title col-md-3">当前：<span id="LABLE_FATHER_ORG_NAME">用户管理-管理员</span></h3>
+							<h3 class="card-title col-md-3">当前：<span id="LABLE_FATHER_ORG_NAME">用户管理-商户管理</span></h3>
 							<div class="col-md-2 col-md-offset-7" id="userAddDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_USER()">新增</button>&nbsp;&nbsp;</div>
 						</div>
 						<div class="card-body">
@@ -73,6 +73,8 @@
 	
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">序号</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">用户名</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">类型</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">创建时间</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">操作</th>
 			
 												</tr>
@@ -82,6 +84,8 @@
 													<tr bgcolor="#FFFFFF">
 														<td valign="center" align="center" width="30">${admins.id }</td>
 														<td valign="center" align="center" width="500px">${admins.loginName }</td>
+														<td valign="center" align="center" width="500px">${admins.adminType }</td>
+														<td valign="center" align="center" width="500px">${admins.showCreateTime }</td>
 														<td valign="center" align="center" width="30">
 															<a href="javascript:" onclick="users_delete('${admins.id}')">删除</a>
 														</td>
@@ -122,6 +126,15 @@
 			                 <label for="JI_JOB_NAME" class="col-sm-2 control-label">用户名：</label>
 			              	 <div class="col-sm-10">
 			                 	<input value="" type="text" name="addLoginName" id="addLoginName" class="form-control" style="width:900px" maxlength="20">
+			                 </div>
+			             </div>
+			             <div class="form-group">
+			                 <label for="JI_JOB_NAME" class="col-sm-2 control-label">账号类型：</label>
+			              	 <div class="col-sm-10">
+			                 	<select name="adminType">
+			                 		<option value="管理员">管理员</option>
+			                 		<option value="商户">商户</option>
+			                 	</select>
 			                 </div>
 			             </div>
 			             <div class="form-group">

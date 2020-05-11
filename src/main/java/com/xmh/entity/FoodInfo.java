@@ -7,11 +7,12 @@ public class FoodInfo {
 	private String mealDescription;
 	private double mealPrice;
 	private String mealImage;
+	private Long foodCreateTime; // 创建时间
 	private Cuisine cuisine;
 	
 	
 	public FoodInfo(int mealId, Integer mealSeriesId, String mealName, String mealSummarize, String mealDescription,
-			double mealPrice, String mealImage,Cuisine cuisine) {
+			double mealPrice, String mealImage, Long foodCreateTime, Cuisine cuisine) {
 		super();
 		this.mealId = mealId;
 		this.mealSeriesId = mealSeriesId;
@@ -20,6 +21,7 @@ public class FoodInfo {
 		this.mealDescription = mealDescription;
 		this.mealPrice = mealPrice;
 		this.mealImage = mealImage;
+		this.foodCreateTime = foodCreateTime;
 		this.cuisine=cuisine;
 	}
 	public FoodInfo() {
@@ -74,6 +76,12 @@ public class FoodInfo {
 	}
 	public void setMealImage(String mealImage) {
 		this.mealImage = mealImage;
+	}
+	public Long getFoodCreateTime() {
+		return foodCreateTime;
+	}
+	public void setFoodCreateTime(Long foodCreateTime) {
+		this.foodCreateTime = foodCreateTime;
 	}
 	@Override
 	public String toString() {

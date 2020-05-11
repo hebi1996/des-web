@@ -5,17 +5,19 @@ import java.util.List;
 public class MainOrder {
 	private Integer oid;
 	private Integer userId;
+	private String payType;
 	private Timestamp orderTime;
 	private int orderState = 0;
 	private double orderPrice;
 	private List<SonOrder> sonOrders;
 	private User user;
 	
-	public MainOrder(Integer oid, Integer userId, Timestamp orderTime, int orderState, double orderPrice,
+	public MainOrder(Integer oid, Integer userId, String payType, Timestamp orderTime, int orderState, double orderPrice,
 			List<SonOrder> sonOrders,User user) {
 		super();
 		this.oid = oid;
 		this.userId = userId;
+		this.payType = payType;
 		this.orderTime = orderTime;
 		this.orderState = orderState;
 		this.orderPrice = orderPrice;
@@ -67,6 +69,13 @@ public class MainOrder {
 	}
 	public void setSonOrders(List<SonOrder> sonOrders) {
 		this.sonOrders = sonOrders;
+	}
+	
+	public String getPayType() {
+		return payType;
+	}
+	public void setPayType(String payType) {
+		this.payType = payType;
 	}
 	@Override
 	public String toString() {

@@ -6,11 +6,13 @@
  	
  	<!-- 添加菜系 -->
  	<insert id="insertMealSeries" keyColumn="seriesId" keyProperty="seriesId" useGeneratedKeys="true">
- 		insert into cuisine(seriesName) values(#{seriesName})
+ 		insert into cuisine(seriesName, adminId, cuisineCreateTime) values(#{seriesName}, #{adminId}, #{cuisineCreateTime})
  	</insert>
+ 	
  	<!-- 显示所有菜系 -->
  	<select id="selectAllSeries" resultType="com.xmh.entity.Cuisine">
- 		select * from cuisine
+ 		select * from cuisine WHERE 0 = 0 
+ 		<if test="adminId != null">AND adminId = #{adminId}</if>
  	</select>
  	<!-- 修改菜系名称 -->
  	<update id="updateMealSeriesName">
@@ -22,7 +24,9 @@
  	</delete>
  	<!-- 菜系分页 -->
  	<select id="selectAllSeriesByPage" resultType="com.xmh.entity.Cuisine">
- 		select * from cuisine limit #{page},#{size}
+ 		select * from cuisine WHERE 0 = 0 
+ 		<if test="adminId != null">AND adminId = #{adminId}</if>
+ 		limit #{page},#{size}
  	</select>
  </mapper>
  	

@@ -17,7 +17,8 @@
 				<association property="cuisine" javaType="com.xmh.entity.Cuisine">
 					<id column="seriesId" property="seriesId"/>
 					<result column="seriesName" property="seriesName"/> 
-			
+					<result column="adminId" property="adminId"/> 
+					<result column="createTime" property="createTime"/> 
 				</association>
 			</association>
 		</resultMap>

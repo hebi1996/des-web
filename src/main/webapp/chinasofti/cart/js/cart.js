@@ -35,7 +35,7 @@ function ADD_ORDERS(){
 		dataType:"json",
 		url:"createMyOrders",
 		data:{
-			
+			"payType" : $("#payType").val()
 		},
 		async:true,
 		success:function(data){

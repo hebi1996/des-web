@@ -24,9 +24,9 @@ public class MealServiceImpl implements MealService{
 	}
 
 	@Override
-	public List<FoodInfo> selectAllMeal() {
+	public List<FoodInfo> selectAllMeal(Integer userId) {
 		// TODO Auto-generated method stub
-		return mealMapper.selectAllMeal();
+		return mealMapper.selectAllMeal(userId);
 	}
 
 	@Override
@@ -42,22 +42,17 @@ public class MealServiceImpl implements MealService{
 	}
 
 	@Override
-	public PageHelper<FoodInfo> selectAllMealByPage(Integer page) {
-		//page����С��1
+	public PageHelper<FoodInfo> selectAllMealByPage(Integer page, Integer adminId) {
 		if (page<=1) {
 			page = 1;
 		}
-		//���浱ǰҳ
 		pageHelper.setNow_page(page);
-		List<FoodInfo> totalUsers = mealMapper.selectAllMeal();
+		List<FoodInfo> totalUsers = mealMapper.selectAllMeal(adminId);
 		Integer size = pageHelper.getSize();
 		List<FoodInfo> foodInfos = mealMapper.selectAllMealByPage((page-1)*size,size);
-		//�ܼ�¼��
 		pageHelper.setCounts(totalUsers.size());
 		
-		//��ҳ����
 		pageHelper.setList(foodInfos);
-		//��ҳ��
 		int total = pageHelper.getPage_total();
 		if (page>1) {
 			pageHelper.setPrev(true);

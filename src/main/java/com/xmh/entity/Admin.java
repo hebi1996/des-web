@@ -7,12 +7,18 @@ public class Admin {
 	private Integer id;
 	private String loginName;
 	private String loginPwd;
+	private String adminType;
+	private Long createTime;
+	private String showCreateTime; 
 	
-	public Admin(Integer id, String loginName, String loginPwd) {
+	public Admin(Integer id, String loginName, String loginPwd, String adminType, Long createTime, String showCreateTime) {
 		super();
 		this.id = id;
 		this.loginName = loginName;
 		this.loginPwd = loginPwd;
+		this.adminType = adminType;
+		this.createTime = createTime; 
+		this.showCreateTime = showCreateTime;
 	}
 
 	public Admin() {
@@ -41,6 +47,29 @@ public class Admin {
 
 	public void setLoginPwd(String loginPwd) {
 		this.loginPwd = loginPwd;
+	}
+
+	public String getAdminType() {
+		return adminType;
+	}
+
+	public void setAdminType(String adminType) {
+		this.adminType = adminType;
+	}
+
+	public Long getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Long createTime) {
+		this.createTime = createTime;
+	}
+	public String getShowCreateTime() {
+		return showCreateTime;
+	}
+
+	public void setShowCreateTime(String showCreateTime) {
+		this.showCreateTime = showCreateTime;
 	}
 
 	@Override

@@ -25,7 +25,12 @@
 					<div class="card">
 						<div class="card-header" style="width:100%">
 							<h3 class="card-title col-md-3">当前：<span id="LABLE_FATHER_ORG_NAME">购物车</span></h3>
-							<div class="col-md-2 col-md-offset-7" id="mealseriesAddDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_ORDERS()">提交订单</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="CLEAR_CART()">清空购物车</button></div>
+							<div class="col-md-5 col-md-offset-7" id="mealseriesAddDiv">
+							<select id="payType">
+								<option value="货到付款">货到付款</option>
+								<option value="微信">微信</option>
+							</select>
+							<button class="btn  btn-success btn-sm" type="button" onclick="ADD_ORDERS()">提交订单</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="CLEAR_CART()">清空购物车</button></div>
 						</div>
 						<div class="card-body">
 							<div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">

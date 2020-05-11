@@ -13,7 +13,7 @@ var msg = [];
 if(admin.trim()=="0"){
 
 msg = [];
-	var json='[{"id": "1","name": "JK - 极客 外卖网","icon": null,"url": "","parentId": "","childs": [{"id": "11","name": "菜系管理","icon": "/xingxing.png","url": "mealseriesManage?page=1","parentId": "4","childs": []},{"id": "12","name": "餐品管理","icon": "/xingxing.png","url": "mealManage?page=1","parentId": "4","childs": []},{"id": "13","name": "订单管理","icon": "/xingxing.png","url": "ordersManage","parentId": "4","childs": []},{"id": "14","name": "用户管理","icon": "/xingxing.png","url": "usersManage","parentId": "4","childs": [{"id": "141","name": "用户列表","icon": "","url": "usersManage?page=1","parentId": "14","childs": []}]}]}]';
+	var json='[{"id": "1","name": "JK - 极客 外卖网","icon": null,"url": "","parentId": "","childs": [{"id": "11","name": "菜系管理","icon": "/xingxing.png","url": "mealseriesManage?page=1","parentId": "4","childs": []},{"id": "12","name": "餐品管理","icon": "/xingxing.png","url": "mealManage?page=1","parentId": "4","childs": []},{"id": "13","name": "订单管理","icon": "/xingxing.png","url": "ordersManage","parentId": "4","childs": []},{"id": "14","name": "用户管理","icon": "/xingxing.png","url": "usersManage","parentId": "4","childs": [{"id": "141","name": "用户列表","icon": "","url": "usersManage?page=1","parentId": "14","childs": []},{"id": "142","name": "商户列表","icon": "","url": "adminManage?page=1", "parentId": "14","childs": []}]}]}]';
 	// jquery的方法
 	var jsonObj = $.parseJSON(json)
 
@@ -48,9 +48,6 @@ msg = [];
 			showNav(msg);
 			//默认显示第一个一级导航菜单的二级菜单。
 			showSideBarByNav(bigDataMenus[0].id);
-	
-		
-
 	
 }
 /**

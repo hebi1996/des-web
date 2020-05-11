@@ -22,9 +22,7 @@ public class AdminLoginController {
 	
 	
 	@RequestMapping("/adminlogin")
-	public String adminLogin() {
-		return "adminlogin";
-	}
+	public String adminLogin() { return "adminlogin"; }
 	
 
 	@RequestMapping(value = "/toadmain",method = RequestMethod.GET)
@@ -45,13 +43,10 @@ public class AdminLoginController {
 		return null;	
 	}
 	@RequestMapping("/adminMain")
-	public String main(){
-		return "main";
-	}
+	public String main(){ return "main"; }
+	
 	@RequestMapping("/adminFace")
-	public String adminFace() {
-		return "adminFace";
-	}
+	public String adminFace() { return "adminFace"; }
 	
 	@RequestMapping("/adminloginout")
 	@ResponseBody

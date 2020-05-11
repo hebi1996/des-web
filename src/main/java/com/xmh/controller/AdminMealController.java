@@ -3,6 +3,9 @@ package com.xmh.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.xmh.entity.Cuisine;
 import com.xmh.entity.FoodInfo;
@@ -26,13 +29,18 @@ public class AdminMealController {
 	private MealSeriesService mealSeriesService;
 	
 	@RequestMapping("/mealManage")
-	public ModelAndView mealManage(@Param("page")Integer page) {
+	public ModelAndView mealManage(@Param("page")Integer page, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		//PageHelper<FoodInfo> pageHelper = mealService.selectAllMealByPage(page);
 		//List<FoodInfo> list = pageHelper.getList();
 		//mav.addObject("page",pageHelper);
 		//mav.addObject("list",list);
-		List<FoodInfo> foodInfos = mealService.selectAllMeal();	
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		if(Objects.equals(null, userId)) {
+			mav.setViewName("adminlogin");
+			return mav;
+		}
+		List<FoodInfo> foodInfos = mealService.selectAllMeal(userId);	
 		mav.addObject("meals",foodInfos);
 		mav.setViewName("mealManage");
 		return mav;
@@ -40,7 +48,12 @@ public class AdminMealController {
 	
 	@RequestMapping("/addMealName")
 	@ResponseBody
-	public Map<String,String> addMealName(@RequestParam("mealName")String mealName,@RequestParam("mealSummarize")String mealSummarize,@RequestParam("mealDescription")String mealDescription,@RequestParam("mealPrice")double mealPrice,@RequestParam("mealSeriesId")Integer mealSeriesId) {
+	public Map<String,String> addMealName(
+			@RequestParam("mealName")String mealName,
+			@RequestParam("mealSummarize")String mealSummarize,
+			@RequestParam("mealDescription")String mealDescription,
+			@RequestParam("mealPrice")double mealPrice,
+			@RequestParam("mealSeriesId")Integer mealSeriesId) {
 		System.out.println(mealName+mealSummarize+mealDescription+mealPrice+mealSeriesId);
 		Map<String,String> map = new HashMap<String, String>();
 		FoodInfo foods=new FoodInfo();
@@ -49,6 +62,7 @@ public class AdminMealController {
 		foods.setMealPrice(mealPrice);
 		foods.setMealSeriesId(mealSeriesId);
 		foods.setMealSummarize(mealSummarize);
+		foods.setFoodCreateTime(System.currentTimeMillis());
 		boolean flag=mealService.insertMeal(foods);
 		if (flag) {
 			map.put("result", "1");
@@ -91,8 +105,9 @@ public class AdminMealController {
 	}
 	@RequestMapping("/getAllSeries")
 	@ResponseBody
-	public List<Cuisine> getAllSeries(){
-		List<Cuisine> cuisines = mealSeriesService.selectAllSeries();
+	public List<Cuisine> getAllSeries(HttpServletRequest request){
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		List<Cuisine> cuisines = mealSeriesService.selectAllSeries(userId);
 
 		return cuisines;
 	}

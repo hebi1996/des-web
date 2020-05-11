@@ -8,6 +8,7 @@
 			<id column="odId" property="odId"/>
 			<result column="oId" property="oId"/> 
 			<result column="mealId" property="mealId"/> 
+			<result column="payType" property="payType"/> 
 			<result column="mealPrice" property="mealPrice"/>
 			<result column="mealCount" property="mealCount"/>
 			<association property="foodInfo" javaType="com.xmh.entity.FoodInfo">
@@ -25,6 +26,7 @@
 			<!-- column:数据库字段		property:实体类实行字段 -->
 			<id column="oid" property="oid"/>
 			<result column="userId" property="userId"/>
+			<result column="payType" property="payType"/>
 			<result column="orderTime" property="orderTime"/>
 			<result column="orderState" property="orderState"/>
 			<result column="orderPrice" property="orderPrice"/>
@@ -39,6 +41,7 @@
 				<id column="odId" property="odId"/>
 				<result column="oId" property="oId"/> 
 				<result column="mealId" property="mealId"/> 
+				<result column="payType" property="payType"/> 
 				<result column="mealPrice" property="mealPrice"/>
 				<result column="mealCount" property="mealCount"/>
 				<association property="foodInfo" javaType="com.xmh.entity.FoodInfo">
@@ -55,16 +58,17 @@
 		</resultMap> 
 	<!-- 创建主订单 -->
  	<insert id="createMainOrder" keyColumn="oid" keyProperty="oid" useGeneratedKeys="true">
- 		insert into mainorder(userId,orderTime,orderState,orderPrice) 
- 		values(#{userId},#{orderTime},#{orderState},#{orderPrice})
+ 		insert into mainorder(userId,payType,orderTime,orderState,orderPrice) 
+ 		values(#{userId},#{payType},#{orderTime},#{orderState},#{orderPrice})
  	</insert>
  	<!-- 创建子订单 -->
  	<insert id="createSonOrder" >
- 		insert into sonorder(oId,mealId,mealPrice,mealCount) values 
+ 		insert into sonorder(oId,mealId,payType,mealPrice,mealCount) values 
  		<foreach collection="sonOrders" item="sonOrders" separator=",">
- 			(#{sonOrders.oId},#{sonOrders.mealId},#{sonOrders.mealPrice},#{sonOrders.mealCount})
+ 			(#{sonOrders.oId},#{sonOrders.mealId},#{sonOrders.payType},#{sonOrders.mealPrice},#{sonOrders.mealCount})
  		</foreach>
  	</insert>
+ 	
  	<!-- 查找所有主订单 -->
  	<select id="getAllOrdersByUserId" resultType="com.xmh.entity.MainOrder">
  		select * from mainorder where userId = #{userId}
@@ -96,6 +100,12 @@
  	<update id="changeOrderState">
  		update mainorder set orderState = #{orderState} where oid= #{oid}
  	</update>
+ 	
+ 	<!-- 查找订单的用户信息 -->
+ 	<select id="getMainOrderByOid" resultType="com.xmh.entity.MainOrder">
+ 		select * from mainorder main 
+ 		where main.oid = #{oid} 
+ 	</select>
  </mapper>
  	
  

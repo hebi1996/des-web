@@ -68,6 +68,8 @@
 	
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">序号</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">菜系名称</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">归属人</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">创建时间</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">编辑</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">删除</th>
 												</tr>
@@ -78,6 +80,8 @@
 													<tr bgcolor="#FFFFFF">
 														<td valign="center" align="center" width="30">${c.seriesId }</td>		
 														<td valign="center" align="center" width="30">${c.seriesName }</td>	
+														<td valign="center" align="center" width="30">${c.adminName }</td>
+														<td valign="center" align="center" width="30">${c.showCreateTime }</td>
 														<td valign="center" align="center" width="30">
 															<a href="" onclick="mealseries_edit('${c.seriesId}','${c.seriesName }'); return false;">编辑</a> 		
 														</td>		

@@ -16,5 +16,5 @@ public interface OrderMapper {
 	List<MainOrder> getAllOrders();
 	User getUserInfoByorders(@Param("oid") Integer oid);
 	boolean changeOrderState(@Param("oid") Integer oid, @Param("orderState") Integer orderState);
-
+	MainOrder getMainOrderByOid(@Param("oid") Integer oid);
 }
