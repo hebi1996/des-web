@@ -49,17 +49,18 @@
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单编号</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单时间</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单状态</th>
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">总额</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单总额</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">支付方式</th>
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">详细</th>
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">处理</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">查看明细</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单操作</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">订单修改</th>
 												</tr>
 											</thead>
 											<tbody id="POST_LIST_TBODY_ID">
 											<c:forEach items="${orders }" var="o">
 													<tr bgcolor="#FFFFFF">
 														<td valign="center" align="center" width="30">${o.oid }</td>
-														<td valign="center" align="center" width="500px"><f:formatDate value="${o.orderTime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+														<td valign="center" align="center" width="250px"><f:formatDate value="${o.orderTime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 														<c:if test="${o.orderState eq 0}">
 															<td valign="center" align="center" width="30">已下单</td>
 														</c:if>
@@ -112,8 +113,8 @@
 																待回复
 															</td>
 														</c:if>
-															
-														
+														<td valign="center" align="center" width="30"><a href="#">删除|编辑</a></td>
+
 													</tr>
 												</c:forEach>
 											</tbody>
