@@ -34,7 +34,7 @@ function adminSubPassword(){
 			async:true,
 			success:function(data){
 				alert("修改成功，请重新登录！")
-				window.location.replace("./adminlogin.jsp");
+				window.location.replace("./adminlogin");
 			},
 			error:function(data){	
 				$("#tishi").html("原密码错误!");
@@ -78,7 +78,7 @@ function userSubPassword(){
 		async:true,
 		success:function(data){
 			alert("修改成功，请重新登录！")
-			window.location.replace("./userlogin.jsp");
+			window.location.replace("userlogin");
 		},
 		error:function(data){	
 			$("#tishi").html("原密码错误!");

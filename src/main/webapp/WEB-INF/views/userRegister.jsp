@@ -15,13 +15,6 @@
 	</head>
 
 	<body style="height: auto;">
-		
-		
-		
-		
-		
-		
-		<!--<div id="ORG_ADD_DIV_ID" class="card card-info" style="display:none">  -->
 		<div id="POST_ADD_DIV_ID" class="card card-info">
 	        <input id="regUUID" type="hidden" value=""/>
 	        <div class="form-horizontal">

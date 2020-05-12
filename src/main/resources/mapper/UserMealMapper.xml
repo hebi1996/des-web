@@ -9,9 +9,10 @@
 			<result column="mealSeriesId" property="mealSeriesId"/> 
 			<result column="mealName" property="mealName"/> 
 			<result column="mealSummarize" property="mealSummarize"/>
-			<result column="mealDescription" property="mealDescription"/> 
-			<result column="mealPrice" property="mealPrice"/> 
-			<result column="mealImage" property="mealImage"/> 
+			<result column="mealDescription" property="mealDescription"/>
+			<result column="mealPrice" property="mealPrice"/>
+			<result column="shPhone" property="shPhone"/>
+		<result column="mealImage" property="mealImage"/>
 			<association property="cuisine" javaType="com.xmh.entity.Cuisine">
 				<id column="seriesId" property="seriesId"/>
 				<result column="seriesName" property="seriesName"/> 

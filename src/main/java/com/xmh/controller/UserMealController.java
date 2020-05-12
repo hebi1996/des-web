@@ -56,9 +56,9 @@ public class UserMealController {
 		Map<String, String> map = new HashMap<String, String>();
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 		User user = userService.userInfoByUserId(userId);
-		if(user.getIntegral() < 20) {
-			map.put("result", "积分不够20不能进行购物！");
-			return map;
+		if(user.getIntegral() < 70) {
+		map.put("result", "积分不够70不能进行加入购物车操作！");
+		return map;
 		}
 		Cart cart = new Cart();
 		cart.setUserId(userId);

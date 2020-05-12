@@ -35,7 +35,7 @@ public class UserLoginController {
 		
 		Map<String,String> map = new HashMap<String, String>();
 		User user=userService.selectUserByUNAndPWD(username,password);
-		
+
 		if (user !=null) {
 			request.getSession().setAttribute("userId", user.getId());
 			request.getSession().setAttribute("loginName", username);

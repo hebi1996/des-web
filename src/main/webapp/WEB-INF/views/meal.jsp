@@ -97,16 +97,16 @@
 																	<table>
 																		<tbody>
 																			<tr>
-																				<td>菜名：${meals.mealName }</td>
+																				<td style="font-size: medium;font-family: Serif"  >菜名：${meals.mealName }</td>
 																			</tr>
 																			<tr>
-																				<td>价格：${meals.mealPrice }</td>
+																				<td style="font-size: small;font-family: Serif" >价格：￥${meals.mealPrice }</td>
 																			</tr>
 																			<tr>
-																				<td>摘要：${meals.mealSummarize }</td>
+																				<td style="font-size: small;font-family: Serif">商品描述：${meals.mealSummarize }</td>
 																			</tr>
 																			<tr>
-																				<td>数量：
+																				<td style="font-size: small;font-family: Serif" >数量：
 																					<select id="my${index.count}">
 																						<option value="1">1</option>
 																						<option value="2">2</option>
@@ -115,15 +115,20 @@
 																						<option value="5">5</option>
 																					</select>
 																				</td>
+
 																				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 																					<button value="" type="button" class="btn btn-info" onclick="addShoppingCart('${meals.mealId}','my${index.count }')">加入购物车</button>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td style="font-size: small;font-family: Serif">
+																					商家联系电话：${meals.shPhone}
 																				</td>
 																			</tr>
 																		</tbody>
 																	</table>
 																</div>
 															</div>
-															<div class="col-sm-12">简介：${meals.mealDescription }</div>
 														</div>
 														<hr>
 													</c:forEach>

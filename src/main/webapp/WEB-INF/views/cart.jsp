@@ -14,23 +14,13 @@
 	</head>
 
 	<body style="height: auto;">
-		
-		
 		<!--  <div class="container-fluid" id="ORG_LIST_DIV_ID">-->
 		<div class="container-fluid" id="MEALSERIES_LIST_DIV_ID">
-			
-			
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header" style="width:100%">
 							<h3 class="card-title col-md-3">当前：<span id="LABLE_FATHER_ORG_NAME">购物车</span></h3>
-							<div class="col-md-5 col-md-offset-7" id="mealseriesAddDiv">
-							<select id="payType">
-								<option value="货到付款">货到付款</option>
-								<option value="微信">微信</option>
-							</select>
-							<button class="btn  btn-success btn-sm" type="button" onclick="ADD_ORDERS()">提交订单</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="CLEAR_CART()">清空购物车</button></div>
 						</div>
 						<div class="card-body">
 							<div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -43,20 +33,23 @@
 										<table id="example2" class="table table-bordered table-hover dataTable" role="grid">
 											<thead>
 												<tr role="row">
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">序号</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">全选</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">菜系</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">菜名</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">单价</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">数量</th>
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">删除</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">操作</th>
 												</tr>
 											</thead>
 											<tbody id="POST_LIST_TBODY_ID">
 												<c:forEach items="${carts }" var="carts" varStatus="c">
 													<tr bgcolor="#FFFFFF">
-														<td valign="center" align="center" width="30">${c.count }</td>
+														<td valign="center" align="center" width="30">
+															<input type="checkbox">
+														</td>
 														<td valign="center" align="center" width="30" value="">${carts.foodInfo.cuisine.seriesName }</td>
 														<td valign="center" align="center" width="30" value="">${carts.foodInfo.mealName }</td>
+														<%--需要进行价格的累加--%>
 														<td valign="center" align="center" width="30" value="">${carts.foodInfo.mealPrice }</td>
 														<td valign="center" align="center" width="30" value="">${carts.count }</td>
 														<td valign="center" align="center" width="30">
@@ -83,7 +76,14 @@
 						</div>
 						<!-- /.card-body -->
 					</div>
-
+					<div class="col-md-5 col-md-offset-7" id="mealseriesAddDiv">
+						<select id="payType">
+							<option value="货到付款">货到付款</option>
+							<option value="微信">微信</option>
+						</select>
+						<button class="btn  btn-success btn-sm" type="button" onclick="ADD_ORDERS()">提交订单</button>&nbsp;&nbsp;
+						<button type="button" class="btn btn-default" onclick="CLEAR_CART()">清空购物车</button>
+					</div>
 				</div>
 
 			</div>

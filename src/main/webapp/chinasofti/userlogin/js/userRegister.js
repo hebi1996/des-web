@@ -78,7 +78,7 @@ function addUserCheck(){
 		async:true,
 		success:function(data){
 			alert("注册成功请关闭本窗口进行登录！");
-			window.location.replace("userlogin.jsp");
+			window.location.replace("userlogin");
 			
 			
 		},

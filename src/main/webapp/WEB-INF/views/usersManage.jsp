@@ -17,9 +17,7 @@
 	</head>
 
 	<body style="height: auto;">
-		
-		
-		<!--  <div class="container-fluid" id="ORG_LIST_DIV_ID">-->
+
 		<div class="container-fluid" id="USERS_LIST_DIV_ID" style="display:block;">
 			<div class="row">
 				<div class="col-md-12" style="">

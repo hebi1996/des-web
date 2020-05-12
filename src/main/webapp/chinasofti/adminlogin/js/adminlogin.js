@@ -13,11 +13,11 @@ function subLogin(){
     var $msg = $("#message"),$usrname=$("#loginName"),$pwd=$("#loginPwd"),$rememberPwd = $("#rememberPwd");
     var usrname = $usrname.val()||"";
 
-    if(usrname.trim().length==0){
-        $("#tishi").html("用户名不能为空");
-        return ;
-    }
-    var pwd = $pwd.val()||"";
+	var pwd = $pwd.val()||"";
+	if(usrname.trim().length==0){
+		$("#tishi").html("用户名不能为空");
+		return ;
+	}
     if(pwd.trim().length==0){
     	$("#tishi").html("密码不能为空!");
         return ;
@@ -40,10 +40,10 @@ function subLogin(){
 			"password":pwd
 		},
 		async:true,
-		success:function(data){
-			//?menuUserName="+usrname.trim()+"&admin=0
-			window.location.replace("adminMain?menuUserName=" +usrname.trim() + "&admin=0");
-		},
+	   success:function(data){
+		   //?menuUserName="+usrname.trim()+"&admin=0
+		   window.location.replace("adminMain?menuUserName=" +usrname.trim() + "&admin=0");
+	   },
 		error:function(data){
 			$("#tishi").html("密码错误!");
 		}

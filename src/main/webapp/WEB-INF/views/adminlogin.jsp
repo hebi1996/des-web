@@ -3,7 +3,7 @@
 <html class="no-touch">
 <head>
 <meta charset="UTF-8">
-<title>JK 极客-外卖网</title>
+<title>JZ 极宅-外卖网</title>
 <meta name="renderer" content="webkit|ie-stand">
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
 <meta name="description" content="">
@@ -109,7 +109,7 @@
 					<div class="navbar-header">
 						<div>
 							<span
-								style="font-family: 'Britannic Bold', 'Britannic'; color: #3BC5BB;">JK-极客</span>
+								style="font-family: 'Britannic Bold', 'Britannic'; color: #3BC5BB;">JZ-极宅</span>
 							<span
 								style="font-family: 'Segoe UI Emoji Bold', 'Segoe UI Emoji Normal', 'Segoe UI Emoji'; color: #1D4474;"></span>
 							<span
